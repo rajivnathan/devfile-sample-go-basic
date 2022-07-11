@@ -18,7 +18,7 @@ const svcName = "devfile-sample-python-basic-git"
 const endpoint = "rajiv"
 
 var port = flag.Int("p", 8080, "server port")
-var url = fmt.Sprintf("http://%s.%s.svc.cluster.local/%s", svcName, namespace, endpoint)
+var url = fmt.Sprintf("http://%s.%s.svc.cluster.local:8080/%s", svcName, namespace, endpoint)
 
 var httpClient = newHTTPClient()
 
@@ -35,7 +35,9 @@ func HelloServer(w http.ResponseWriter, r *http.Request) {
 }
 
 func HelloRajiv(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, doRequest(httpClient))
+	result := doRequest(httpClient)
+	fmt.Println(result)
+	fmt.Fprint(w, result)
 }
 
 func doRequest(httpClient *http.Client) string {
