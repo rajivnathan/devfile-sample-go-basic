@@ -18,7 +18,7 @@ const svcName = "devfile-sample-python-basic-git"
 const endpoint = "rajiv"
 
 var port = flag.Int("p", 8080, "server port")
-var url = fmt.Sprintf("http://%s.%s.svc.cluster.local:8081/%s", svcName, namespace, endpoint)
+var url = fmt.Sprintf("http://%s.%s:8081/%s", svcName, namespace, endpoint)
 
 var httpClient = newHTTPClient()
 
