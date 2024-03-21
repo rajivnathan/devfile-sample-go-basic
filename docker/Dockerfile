@@ -1,14 +1,11 @@
-FROM golang:1.16-alpine
+FROM registry.access.redhat.com/ubi9/go-toolset:1.19.13-4.1697647145
 
-WORKDIR /app
-
-COPY go.mod ./
+COPY . .
 RUN go mod download
 
-COPY *.go ./
+RUN go build -buildvcs=false -o ./main
 
-RUN go build -o /main
-
+ENV PORT 8081
 EXPOSE 8081
 
-CMD [ "/main" , "-p=8081"]
+CMD [ "./main" ]
